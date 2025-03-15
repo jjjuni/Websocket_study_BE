@@ -4,6 +4,9 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:${MONGO_DB_PASSWORD}@cluster.z5qs8.mongodb.net/webchat?retryWrites=true&w=majority&appName=cluster
   sql:
     init:
       mode: never
@@ -50,7 +53,7 @@ spring:
           naver:
             client-id: ${NAVER_CLIENT_ID}
             client-secret: ${NAVER_CLIENT_SECRET}
-            client-name: NAVER
+            client-name: Naver
             authorization-grant-type: authorization_code
             redirect-uri: ${DOMAIN}/login/oauth2/code/naver
             scope: email, name

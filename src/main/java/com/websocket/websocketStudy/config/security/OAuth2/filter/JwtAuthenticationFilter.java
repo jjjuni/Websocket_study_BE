@@ -47,8 +47,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throw new ErrorException(ErrorStatus.TOKEN_NOT_FOUND);
         }
 
-
-
         try {
             // accessToken 만 없을 경우 EXPIRED_ACCESS_TOKEN throw
             if (Objects.equals(accessToken, "")) {
