@@ -7,7 +7,7 @@ public class ChatRequestDTO {
 
     @Getter
     @Builder
-    public static class receiveDTO {
+    public static class ReceiveDTO {
         String message;
         String sender;
         String email;

@@ -2,6 +2,7 @@ package com.websocket.websocketStudy.config.security.OAuth2.filter;
 
 import com.websocket.websocketStudy.apiPayload.code.status.ErrorStatus;
 import com.websocket.websocketStudy.apiPayload.exception.ErrorException;
+import com.websocket.websocketStudy.config.security.PermittedUriService;
 import com.websocket.websocketStudy.domain.token.JwtUtil;
 import com.websocket.websocketStudy.domain.token.data.enums.JwtRule;
 import com.websocket.websocketStudy.domain.token.service.JwtService;
@@ -23,6 +24,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+    private final PermittedUriService permittedUriService;
     private final JwtService jwtService;
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
@@ -35,6 +37,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+        //         인증이 필요 없는 uri 처리
+        if (permittedUriService.isPermittedURI(request.getRequestURI())){
+            System.out.println(request.getRequestURI() + " : 허가 필요 없음");
+            SecurityContextHolder.getContext().setAuthentication(null);
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         String accessToken = jwtService.resolveTokenFromCookie(request, JwtRule.ACCESS_PREFIX);
         String refreshToken = jwtService.resolveTokenFromCookie(request, JwtRule.REFRESH_PREFIX);
