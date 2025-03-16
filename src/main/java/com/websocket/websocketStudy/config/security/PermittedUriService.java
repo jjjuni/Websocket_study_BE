@@ -8,10 +8,8 @@ import java.util.Arrays;
 public class PermittedUriService {
 
     public static final String[] PERMITTED_URI = {
-            "/oauth2/**", "/api/auth/**",
-            "/login", "/login/oauth2/**", "/signup", "/auth/callback",
+            "/login",
             "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-resources/**"};
-
 
     public boolean isPermittedURI(String requestURI){
         return Arrays.stream(PERMITTED_URI)

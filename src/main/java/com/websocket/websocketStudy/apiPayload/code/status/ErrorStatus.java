@@ -28,19 +28,7 @@ public enum ErrorStatus implements BaseErrorCode {
     // Token
     INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN4001", "유효하지 않은 토큰입니다."),
     TOKEN_NOT_FOUND(HttpStatus.UNAUTHORIZED, "TOKEN4002", "토큰을 찾을 수 없습니다. (인증이 필요한 서비스)"),
-    EXPIRED_ACCESS_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN4003", "accessToken이 만료되었습니다.."),
-
-    // FoodCategory
-    FOOD_CATEGORY_NOT_FOUND(HttpStatus.BAD_REQUEST, "FOOD_CATEGORY4001", "음식 카테고리를 찾을 수 없습니다."),
-
-    // Region
-    REGION_NOT_FOUND(HttpStatus.BAD_REQUEST, "REGION4001", "국가를 찾을 수 없습니다."),
-
-    // Store
-    STORE_NOT_FOUND(HttpStatus.BAD_REQUEST, "STORE4001", "가게를 찾을 수 없습니다."),
-
-    // Mission
-    MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION4001", "미션을 찾을 수 없습니다."),;
+    EXPIRED_ACCESS_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN4003", "accessToken이 만료되었습니다..");
 
     private final HttpStatus httpStatus;
     private final String code;
