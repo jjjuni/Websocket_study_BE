@@ -21,6 +21,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // Page
     NOT_PAGE(HttpStatus.BAD_REQUEST, "PAGE4001", "페이지 요청이 잘못되었습니다. (page = 1 이상의 int)"),
 
+    // ChatRoom
+    ROOM_NOT_FOUND(HttpStatus.BAD_REQUEST, "ROOM4001", "존재하지 않는 채팅방입니다,"),
+
     // User
     USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "USER4001", "존재하지 않는 사용자입니다,"),
     NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "USER4002", "닉네임은 필수입니다."),
