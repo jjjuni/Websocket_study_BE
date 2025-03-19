@@ -52,7 +52,7 @@ jobs:
       - name: Deploy to EC2   # EC2에 배포
         env:
           EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
-          EC2_USERNAME: ${{ secrets.EC2.USERNAME }}
+          EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
           echo "$EC2_SSH_KEY" > private_key.pem
