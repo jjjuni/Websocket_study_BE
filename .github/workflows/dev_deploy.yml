@@ -1,0 +1,12 @@
+name: Q-aT Dev CI/CD  # 이름은 마음대로
+
+on:
+  pull_request:
+    types: [closed]
+  workflow_dispatch:  # 수동 실행 가능하도록
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # OS 환경
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'develop'
+
