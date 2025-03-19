@@ -4,7 +4,6 @@ import com.websocket.websocketStudy.apiPayload.code.status.ErrorStatus;
 import com.websocket.websocketStudy.apiPayload.exception.ErrorException;
 import com.websocket.websocketStudy.domain.token.service.JwtService;
 import com.websocket.websocketStudy.domain.user.data.User;
-import com.websocket.websocketStudy.domain.user.data.enums.Role;
 import com.websocket.websocketStudy.domain.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -59,7 +58,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         jwtService.generateRefreshToken(response, user);
         jwtService.generateAccessToken(response, user);
 
-        String redirectUrl = "http://localhost:3000/home";
+        String redirectUrl = "https://q-at.vercel.app/home";
 
         getRedirectStrategy().sendRedirect(request, response, redirectUrl);
     }
