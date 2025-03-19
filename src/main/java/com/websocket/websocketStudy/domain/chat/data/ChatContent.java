@@ -17,6 +17,6 @@ public class ChatContent {
     private String sender;
     private String email;
     private String message;
-    private String roomId;
+    private String roomUuid;
     private LocalDateTime sendAt;
 }

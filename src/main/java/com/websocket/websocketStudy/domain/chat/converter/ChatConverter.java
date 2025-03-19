@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 
 public class ChatConverter {
 
-    public static ChatResponseDTO.SendMessageDTO toSendMessageDTO(ChatRequestDTO.ReceiveDTO request) {
+    public static ChatResponseDTO.SendMessageDTO toSendMessageDTO(ChatRequestDTO.ReceiveDTO request, String email) {
         return ChatResponseDTO.SendMessageDTO.builder()
                 .sender(request.getSender())
-                .email(request.getEmail())
+                .email(email)
                 .message(request.getMessage())
                 .sendAt(LocalDateTime.now())
                 .build();

@@ -1,7 +1,5 @@
-package com.websocket.websocketStudy.domain.user.data;
+package com.websocket.websocketStudy.domain.chatRoom.data;
 
-import com.websocket.websocketStudy.domain.user.data.enums.Role;
-import com.websocket.websocketStudy.domain.user.data.enums.SocialType;
 import com.websocket.websocketStudy.domain.chatRoom.data.mapping.UserChatRoom;
 import com.websocket.websocketStudy.global.data.BaseEntity;
 import jakarta.persistence.*;
@@ -9,9 +7,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -20,26 +20,20 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class User extends BaseEntity {
+public class ChatRoom extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(updatable = false, nullable = false, unique = true) // 유니크한 UUID 컬럼 추가
+    @UuidGenerator // Hibernate의 UUID 자동 생성 기능 사용
+    private UUID roomUuid;
+
     @NotNull
-    @Column(nullable = false, length = 20)
-    private String name;
-
-    @Column(nullable = false, length = 40)
-    private String email;
-
-    @Enumerated(EnumType.STRING)
-    private SocialType socialType;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private String roomName;
 
     @Builder.Default
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL)
     private List<UserChatRoom> userChatRoomList = new ArrayList<>();
 }

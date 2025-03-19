@@ -5,7 +5,6 @@ import com.websocket.websocketStudy.domain.chat.repository.ChatRepository;
 import com.websocket.websocketStudy.domain.chat.web.dto.ChatRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,13 +16,14 @@ public class ChatServiceImpl implements ChatService{
     private final ChatRepository chatRepository;
 
     @Override
-    public ChatContent receiveAndSave(ChatRequestDTO.ReceiveDTO request) {
+    public ChatContent receiveAndSave(String roomUuid, ChatRequestDTO.ReceiveDTO request, String email) {
+
         ChatContent chatContent = ChatContent.builder()
                 .sender(request.getSender())
                 .message(request.getMessage())
-                .roomId(request.getRoomId())
+                .roomUuid(roomUuid)
                 .sendAt(LocalDateTime.now())
-                .email(request.getEmail())
+                .email(email)
                 .build();
 
         return chatRepository.save(chatContent);

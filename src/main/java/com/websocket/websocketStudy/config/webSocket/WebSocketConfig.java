@@ -1,5 +1,6 @@
 package com.websocket.websocketStudy.config.webSocket;
 
+import com.websocket.websocketStudy.config.security.interceptor.CustomHandshakeInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -15,9 +16,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws-chat") // 클라이언트가 연결할 엔드포인트
-                .setAllowedOrigins("http://192.168.50.186:3000", "http://localhost:3000") // CORS 허용 (모든 도메인에서 접근 가능)
+                .addInterceptors(new CustomHandshakeInterceptor())
+                .setAllowedOrigins("http://192.168.50.186:3000", "http://localhost:3000", "https://q-at.vercel.app") // CORS 허용 (모든 도메인에서 접근 가능)
                 .withSockJS(); // SockJS 지원 (WebSocket을 지원하지 않는 환경에서 대체)
-
     }
 
     @Override

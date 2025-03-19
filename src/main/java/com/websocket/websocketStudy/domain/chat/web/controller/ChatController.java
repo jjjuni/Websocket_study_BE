@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("/chats")
+@RequestMapping("/chat")
 public class ChatController {
 
     private final ChatService chatService;
 
     @Operation(summary = "특정 채팅방의 채팅 목록 조회 API", description = "특정 채팅방의 채팅 목록을 조회하는 API로 페이징을 포함. query String으로 page 번호 필요")
-    @GetMapping("/{roomId}")
-    public ApiResponse<ChatResponseDTO.ChatListDTO> getChatList(@PathVariable(name = "roomId") String roomId, @CheckPage @RequestParam(name = "page") Integer page) {
-        Page<ChatContent> chatContentList = chatService.getChatContentList(roomId, page - 1);
+    @GetMapping("/{room-uuid}")
+    public ApiResponse<ChatResponseDTO.ChatListDTO> getChatList(@PathVariable(name = "room-uuid") String roomUuid, @CheckPage @RequestParam(name = "page") Integer page) {
+        Page<ChatContent> chatContentList = chatService.getChatContentList(roomUuid, page - 1);
         return ApiResponse.onSuccess(ChatConverter.toChatListDTO(chatContentList, page));
     }
 }
