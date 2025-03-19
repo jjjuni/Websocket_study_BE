@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
+    url: ${SPRING_DATASOURCE_URL}?serverTimezone=Asia/Seoul
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -29,7 +29,7 @@ spring:
       - "/swagger-resources/**"
     oauth2:
       url:
-        base: "http://localhost:3000"
+        base: ${WEB_DOMAIN}
         path:
           signup: "/signup"
           auth: "/auth"
@@ -40,7 +40,7 @@ spring:
             client-id: ${KAKAO_CLIENT_ID}
             client-secret: ${KAKAO_CLIENT_SECRET}
             client-name: Kakao
-            redirect-uri: ${DOMAIN}/login/oauth2/code/kakao
+            redirect-uri: ${DOMAIN}:8080/login/oauth2/code/kakao
             authorization-grant-type: authorization_code
             scope: profile_nickname, account_email
           google:
@@ -48,14 +48,14 @@ spring:
             client-secret: ${GOOGLE_CLIENT_SECRET}
             client-name: Google
             authorization-grant-type: authorization_code
-            redirect-uri: ${DOMAIN}/login/oauth2/code/google
+            redirect-uri: ${DOMAIN}:8080/login/oauth2/code/google
             scope: email, profile
           naver:
             client-id: ${NAVER_CLIENT_ID}
             client-secret: ${NAVER_CLIENT_SECRET}
             client-name: Naver
             authorization-grant-type: authorization_code
-            redirect-uri: ${DOMAIN}/login/oauth2/code/naver
+            redirect-uri: ${DOMAIN}:8080/login/oauth2/code/naver
             scope: email, name
         provider:
           kakao:
