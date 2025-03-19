@@ -47,7 +47,8 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",
                 "http://localhost:8080",
-                "http://192.168.50.186:3000"
+                "http://192.168.50.186:3000",
+                "https://q-at.vercel.app"
         ));
         config.setAllowedMethods(List.of("*"));
         config.setAllowedHeaders(List.of("*"));

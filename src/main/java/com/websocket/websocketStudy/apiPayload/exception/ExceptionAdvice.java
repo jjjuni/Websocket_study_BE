@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import com.websocket.websocketStudy.apiPayload.ApiResponse;
 import com.websocket.websocketStudy.apiPayload.code.ErrorReasonDTO;
@@ -37,6 +38,19 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
                 .orElseThrow(() -> new RuntimeException("ConstraintViolationException 추출 도중 에러 발생"));
 
         return handleExceptionInternalConstraint(e, ErrorStatus.valueOf(errorMessage), HttpHeaders.EMPTY, request);
+    }
+
+    // 잘못된 UUID 형식
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<Object> handleUUIDFormatException(MethodArgumentTypeMismatchException e, WebRequest request) {
+        return handleExceptionInternalFalse(
+                e,
+                ErrorStatus.INVALID_UUID,  // 커스텀 에러 코드 추가
+                HttpHeaders.EMPTY,
+                HttpStatus.BAD_REQUEST,
+                request,
+                "유효한 UUID 형식이 아닙니다."
+        );
     }
 
     @Override
