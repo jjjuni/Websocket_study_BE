@@ -49,7 +49,7 @@ public class SecurityConfig {
                 "http://localhost:8080",
                 "http://192.168.50.186:3000",
                 "http://192.168.50.186:8080",
-                "https://q-at.vercel.app"
+                "https://q-at.store"
         ));
         config.setAllowedMethods(List.of("*"));
         config.setAllowedHeaders(List.of("*"));

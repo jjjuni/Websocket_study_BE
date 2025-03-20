@@ -17,7 +17,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws-chat") // 클라이언트가 연결할 엔드포인트
                 .addInterceptors(new CustomHandshakeInterceptor())
-                .setAllowedOrigins("http://192.168.50.186:3000", "http://localhost:3000", "https://q-at.vercel.app") // CORS 허용 (모든 도메인에서 접근 가능)
+                .setAllowedOrigins("http://192.168.50.186:3000", "http://localhost:3000", "https://q-at.store") // CORS 허용 (모든 도메인에서 접근 가능)
                 .withSockJS(); // SockJS 지원 (WebSocket을 지원하지 않는 환경에서 대체)
     }
 
