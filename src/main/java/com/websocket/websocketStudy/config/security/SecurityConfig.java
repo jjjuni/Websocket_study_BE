@@ -48,6 +48,7 @@ public class SecurityConfig {
                 "http://localhost:3000",
                 "http://localhost:8080",
                 "http://192.168.50.186:3000",
+                "http://192.168.50.186:8080",
                 "https://q-at.vercel.app"
         ));
         config.setAllowedMethods(List.of("*"));

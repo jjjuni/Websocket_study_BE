@@ -58,7 +58,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         jwtService.generateRefreshToken(response, user);
         jwtService.generateAccessToken(response, user);
 
-        String redirectUrl = "https://q-at.vercel.app/home";
+        String redirectUrl = "http://localhost:3000/home";
 
         getRedirectStrategy().sendRedirect(request, response, redirectUrl);
     }
